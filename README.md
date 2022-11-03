@@ -8,21 +8,16 @@ gemgis 1.0.0
 geopandas 0.11.0
 matplotlib 3.5.1 
 numpy 1.22.3
-os
-pyproj
-pickle
-pandas
-requests
-rioxarray
-scipy
-statsmodels
-shapely
-seaborn
-torch
-timeit
-tempfile
-warnings
-xarray
+pandas 1.4.2
+pyproj 3.3.1
+pytorch 1.13.0.dev20220729
+requests 2.28.1
+rioxarray 0.11.1
+scipy 1.7.3 
+seaborn 0.11.2
+shapely 1.8.2
+statsmodels 0.13.2
+xarray 0.20.1
 ```
 ## Data 
 - [noaa_hrrr.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/noaa_hrrr.py) and [modis_ndvi.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/modis_ndvi.py) are used to process the NOAA-HRRR and NASA-MODIS datasets respectively.
