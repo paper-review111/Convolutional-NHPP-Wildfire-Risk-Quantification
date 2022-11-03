@@ -24,7 +24,7 @@ xarray 0.20.1
 - Meteorological data from the NOAA HRRR model: https://console.cloud.google.com/marketplace/product/noaa-public/hrrr?project=python-232920&pli=1
 ## Usage
 - [noaa_hrrr.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/noaa_hrrr.py) and [modis_ndvi.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/modis_ndvi.py) are used to process the NOAA-HRRR and NASA-MODIS datasets respectively.
-- 
+- Vegetation data from the NASA MODIS data product: https://ladsweb.modaps.eosdis.nasa.gov/search/order/4/MOD09GQ--61
 ## Reproducibility
 -
 -
