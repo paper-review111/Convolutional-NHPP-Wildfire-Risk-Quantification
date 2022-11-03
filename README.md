@@ -1,7 +1,6 @@
 # Convolutional-NHPP-Wildfire-Risk-Quantification
 ## Environment
 These codes are implemented in Python 3.10 with the following required packages. 
-
 ```html
 cmocean 2.0
 contextily 1.2.0
