@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import geopandas as gpd
 import contextily as cx
+import pandas as pd
+from shapely.ops import nearest_points
+import datetime as dt
 from shapely.geometry import Polygon
 import config
 import seaborn as sns
@@ -22,7 +25,6 @@ PG_CA = gpd.read_file(PG_CA_path)
 # -----------------------------------------------------------------------------------------------------------------------
 # plot the transmission lines in CA
 # -----------------------------------------------------------------------------------------------------------------------
-# subset CA
 US_path = os.path.join(cwd, 'data', 'us_states.json')
 US = gpd.read_file(US_path)
 CA = US[US.id == 'CA']
@@ -110,5 +112,57 @@ for label in (ax.get_xticklabels() + ax.get_yticklabels()):
 plt.xlabel('nvdi', fontsize=26, color='black')
 plt.ylabel('density', fontsize=26, color='black')
 plot_path = os.path.join(cwd, 'results', 'NDVIdensity.png')
+plt.savefig(plot_path, bbox_inches='tight', pad_inches=0.1, dpi=300)
+plt.show()
+
+# -----------------------------------------------------------------------------------------------------------------------
+# plot the motivating example figure
+# -----------------------------------------------------------------------------------------------------------------------
+# PG_CA
+cwd = os.getcwd()
+PowerGrid_path = os.path.join(cwd, 'data', 'transmission_lines', 'transmission_lines.shp')
+PowerGrid_raw = gpd.read_file(PowerGrid_path)
+PowerGrid = PowerGrid_raw[['geometry']]
+
+# select CA
+US_path = os.path.join(cwd, 'data', 'us_states.json')
+US = gpd.read_file(US_path)
+AOI = US[US.id == 'CA']
+PG_CA = gpd.overlay(PowerGrid, AOI, how="intersection")
+
+# Fire_CA in year 2019
+fire_path = os.path.join(cwd, 'data', 'fire_incident.csv')
+fire_raw = pd.read_csv(fire_path, encoding='ISO-8859-1')
+fire_raw['Longitude'] = pd.to_numeric(fire_raw['Longitude'], errors='coerce')
+fire_raw['Latitude'] = pd.to_numeric(fire_raw['Latitude'], errors='coerce')
+fire_raw = fire_raw.dropna(subset=['Longitude', 'Latitude']).reset_index()
+fire_raw['Longitude'].isnull().values.any()
+fire = gpd.GeoDataFrame(
+    fire_raw, crs=PG_CA.crs,
+    geometry=gpd.points_from_xy(fire_raw.Longitude, fire_raw.Latitude)
+)
+fire_date = []
+for i in np.arange(len(fire)):
+    fire_date.append(dt.datetime.strptime(fire.Date[i], "%m/%d/%Y"))
+fire.Date = fire_date
+fire = fire[fire.Year == 2019]
+Fire_CA = gpd.overlay(fire, AOI, how="intersection")  # select fire incidences for AOI
+
+# plot the motivating example figure
+fig6, ax = plt.subplots(1, figsize=(10, 10))
+ax.set_title('2019 Wildfires', fontsize=26)
+ax.set_xlim([-124.5, -114])
+ax.set_ylim([32, 42.5])
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+PG_CA.plot(ax=ax, color="black")
+AOI.plot(ax=ax, color="grey", alpha=0.3)
+Fire_CA.plot(ax=ax, color="red", markersize=40.0, alpha=0.6)
+cx.add_basemap(ax, crs=PowerGrid.crs)
+plt.xlabel('long', fontsize=26, color='black')
+plt.ylabel('lat', fontsize=26, color='black')
+for label in (ax.get_xticklabels() + ax.get_yticklabels()):
+    label.set_fontsize(20)
+plot_path = os.path.join(cwd, 'results', 'motivating_example.png')
 plt.savefig(plot_path, bbox_inches='tight', pad_inches=0.1, dpi=300)
 plt.show()
