@@ -1,4 +1,4 @@
-# Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines
+# Convolutional-NHPP-Wildfire-Risk-Quantification
 ## Environment
 ```html
 Python 3.10
