@@ -18,7 +18,7 @@ def modis_ndvi(day, AOI_lat, AOI_lon, search_size, LN):
     # read hdf file
     cwd = os.getcwd()
     file_name = str(day.timetuple().tm_yday) + '.hdf'
-    file_path = os.path.join(cwd, 'Data', 'NDVI', file_name)
+    file_path = os.path.join(cwd, 'data', file_name)
     desired_bands = ['sur_refl_b01_1', 'sur_refl_b02_1']
     modis_pre_bands = rxr.open_rasterio(file_path, masked=True, variable=desired_bands).squeeze()
     modis_crs = modis_pre_bands.rio.crs
@@ -75,9 +75,9 @@ def ndvi_data():
     for i in range(days):
         day = start + timedelta(days=i)
         ndvi[:, i, 0] = modis_ndvi(day, AOI_lat, AOI_lon, search_size, LN)
-    cwd = os.getcwd()
-    ndvi_path = os.path.join(cwd, 'Data', 'ndvi3b.npy')
-    np.save(ndvi_path, ndvi)  # save data
+    # cwd = os.getcwd()
+    # ndvi_path = os.path.join(cwd, 'data', 'ndvi.npy')
+    # np.save(ndvi_path, ndvi)  # save data
 
 
 def ndvi_plot():
@@ -90,7 +90,7 @@ def ndvi_plot():
 if __name__ == "__main__":
     # show an illustrative plot of ndvi data on LN
     start = timeit.default_timer()
-    day = date(2019, 6, 30)
+    day = date(2019, 6, 1)
     AOI_lat = [36, 37]
     AOI_lon = [-120, -119]
     search_size = 0.002  # set AOI and search size
@@ -99,9 +99,10 @@ if __name__ == "__main__":
     stop = timeit.default_timer()
     print('Time: ', stop - start)
     start_time = timeit.default_timer()
-    # obtain ndvi from modis data
-    start = date(2019, 5, 29)
-    end = date(2019, 7, 7)
+
+    # process and save the nasa-ndvi dataset
+    start = date(2019, 6, 1)
+    end = date(2019, 6, 1)
     days = (end - start).days + 1  # set interested dates
     LN = config.LN  # input global variable
     ndvi_data()
