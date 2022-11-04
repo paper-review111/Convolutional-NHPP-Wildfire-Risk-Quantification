@@ -29,7 +29,8 @@ The training data can be pre-proceesed using the following files:
 - ```powerline_fire.py``` Before processing the environmental variables, the linear network of the power transmission lines should be made by [powerline_fire.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py). In addiction, this file also projects the wildfire incident data to the linear network of the power transmisssion lines for the interested area.
 - ```noaa_hrrr.py``` The meteorological data from the NOAA HRRR model can be obtained and processed by [noaa_hrrr.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/noaa_hrrr.py). This file does not need to download the raw dataset, and the required meteorological data can be download and processed directly. 
 - ```modis_ndvi.py``` The raw vegetation data from the NASA MODIS data product should be downloaded before [noaa_hrrr.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/noaa_hrrr.py) can be implemented. The downloaded data  (named as the day of year) need to be placed at the [data](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/tree/main/data) folder. The sample dataset can be directly obtained at https://drive.google.com/file/d/1J-A9i5WM5fLD21BuNrv2_seBZPbfOepe/view for testing the codes.
-Then, the $\texttt{cNHPP}$
+
+Then, the models $\texttt{NHPP}$, $\texttt{mRNN}$, $\texttt{cNHPP}$ can be trained by the following files:
 - ```model_est.py``` 
 - ```mRNN_train.py```
 
