@@ -3,13 +3,14 @@ import tempfile
 import xarray as xr
 import requests
 import timeit
-import os
 import warnings
 import config
 import geopandas as gpd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 import cmocean
+
 
 warnings.simplefilter("ignore")
 
@@ -76,22 +77,21 @@ def hrrr_data():
         hrrr[:, i, 0] = noaa_hrrr(day, parameter_name1, AOI_lat, AOI_lon, LN) - 273.15
         hrrr[:, i, 1] = noaa_hrrr(day, parameter_name2, AOI_lat, AOI_lon, LN)
         hrrr[:, i, 2] = noaa_hrrr(day, parameter_name3, AOI_lat, AOI_lon, LN)
-    cwd = os.getcwd()
-    hrrr_path = os.path.join(cwd, 'Data', 'hrrr3b.npy')
-    np.save(hrrr_path, hrrr)  # save data
+    # cwd = os.getcwd()
+    # hrrr_path = os.path.join(cwd, 'data', 'hrrr.npy')
+    # np.save(hrrr_path, hrrr)  # save data
 
 
 def hrrr_plot():
     LN_ft = noaa_hrrr(day, parameter_name, AOI_lat, AOI_lon, LN) - 273.15
     fig, ax = plt.subplots(1, figsize=(10, 10))
-    LN.plot(ax=ax, column=np.array(LN_ft), legend=True, linewidth=3, cmap='plasma')
+    LN.plot(ax=ax, column=np.array(LN_ft), legend=True, linewidth=3, cmap=cmap)
     plt.xlabel('long', fontsize=26, color='black')
     plt.ylabel('lat', fontsize=26, color='black')
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
         label.set_fontsize(20)
     cb_ax = fig.axes[1]
     cb_ax.tick_params(labelsize=18)
-    plt.savefig('tmp.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
     plt.show()
 
 
@@ -99,22 +99,40 @@ if __name__ == "__main__":
     # show an illustrative plot of hrrr data on LN
     start_time = timeit.default_timer()
     day = date(2019, 6, 1)
-    parameter_name = 'TMP:2 m'
     AOI_lat = [36, 37]
     AOI_lon = [-120, -119]
     LN = config.LN
-    hrrr_plot()
+    parameter_names = ['TMP:2 m', 'SPFH:2 m', 'WIND:10 m']
+    cmaps = [cmocean.cm.thermal, cmocean.cm.rain, cmocean.cm.speed]
+    for i in range(len(parameter_names)):
+        parameter_name = parameter_names[i]
+        cmap = cmaps[i]
+        hrrr_plot()
     stop_time = timeit.default_timer()
     print('Time: ', stop_time - start_time)
     start_time = timeit.default_timer()
+
+    # process and save the noaa-hrrr dataset
     parameter_name1 = 'TMP:2 m'
     parameter_name2 = 'WIND:10 m'
     parameter_name3 = 'SPFH:2 m'  # set interested parameters
-    start = date(2019, 5, 29)
-    end = date(2019, 7, 7)
+    start = date(2019, 6, 1)
+    end = date(2019, 6, 1)
     days = (end - start).days + 1  # set interested dates
     LN = config.LN  # input global variable
     hrrr_data()
 
     stop_time = timeit.default_timer()
     print('Time: ', stop_time - start_time)
+
+
+
+
+
+
+
+
+
+
+
+
