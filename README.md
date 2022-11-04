@@ -36,6 +36,6 @@ Then, the models $\texttt{NHPP}$, $\texttt{mRNN}$, $\texttt{cNHPP}$ can be train
 
 ## Reproducibility
 After the models are trained successfully, we can obtain the outputs in the paper with the following files:
-- [data_description.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Figure 1, 6, 7, 8
-- [model_output.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Table 1, 2; Figure 9, 10, 11, 12, 13
-- [cp_ct.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Figure 5
+- [data_description.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Figure 1, 6, 7, 8.
+- [model_output.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Table 1, 2; Figure 9, 10, 11, 12, 13.
+- [cp_ct.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py): Figure 5.
