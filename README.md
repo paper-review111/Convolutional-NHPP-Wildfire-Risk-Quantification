@@ -35,6 +35,7 @@ Then, the models $\texttt{NHPP}$, $\texttt{mRNN}$, $\texttt{cNHPP}$ can be train
 - ```mRNN_train.py```
 
 ## Reproducibility
+After the models are trained, we can obtain the outputs in the paper with the following files:
 -
 -
 -
