@@ -31,8 +31,8 @@ The training data need to be pre-proceesed with the following files:
 - ```modis_ndvi.py``` The raw vegetation data from the NASA MODIS data product should be downloaded before [noaa_hrrr.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification-for-Power-Transmission-Lines/blob/main/noaa_hrrr.py) can be implemented. The downloaded data  (named as the day of year) need to be placed at the [data](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/tree/main/data) folder. The sample dataset can be directly obtained at https://drive.google.com/file/d/1J-A9i5WM5fLD21BuNrv2_seBZPbfOepe/view for testing the codes.
 
 Then, the models $\texttt{NHPP}$, $\texttt{mRNN}$, $\texttt{cNHPP}$ can be trained by with following files:
-- ```model_est.py``` 
-- ```mRNN_train.py```
+- ```model_est.py``` The models $\texttt{NHPP}$ and $\texttt{cNHPP}$ can be trained by [model_est.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py).
+- ```mRNN_train.py``` The model $\texttt{mRNN}$ can be trained by [mRNN_train.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py).
 
 ## Reproducibility
 After the models are trained, we can obtain the outputs in the paper with the following files:
