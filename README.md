@@ -32,7 +32,7 @@ The training data need to be pre-proceesed with the following files:
 
 Then, the models $\texttt{NHPP}$, $\texttt{mRNN}$, $\texttt{cNHPP}$ can be trained by with following files:
 - ```model_est.py``` Unknonwn paramaters of the models $\texttt{NHPP}$ and $\texttt{cNHPP}$ can be estimated by [model_est.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/model_est.py). The estimated computational time is up to 1 hour. 
-- ```mRNN_train.py``` The model $\texttt{mRNN}$ can be trained by [mRNN_train.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/powerline_fire.py).
+- ```mRNN_train.py``` The model $\texttt{mRNN}$ can be trained by [mRNN_train.py](https://github.com/paper-review111/Convolutional-NHPP-Wildfire-Risk-Quantification/blob/main/mRNN_train.py).
 
 ## Reproducibility
 After the models are trained, we can obtain the outputs in the paper with the following files:
